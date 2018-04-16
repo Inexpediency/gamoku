@@ -30,8 +30,8 @@ class Game {
 
 	deletePlayer(id) {
 		const index = this._players.indexOf(id);
-		this._started = this._players.length === PLAYERS_COUNT;
 		this._players.splice(index, 1);
+		this._started = this._players.length === PLAYERS_COUNT;
 		this._cleanField();
 	}
 
