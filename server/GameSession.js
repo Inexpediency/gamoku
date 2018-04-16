@@ -2,7 +2,7 @@ const Game = require("./Game");
 
 class GameSession {
 	constructor() {
-		this._players = [];
+		this._players = new Map();
 		this._game = new Game();
 	}
 
@@ -11,8 +11,8 @@ class GameSession {
 		{
 			return false;
 		}
-		const id = this._players.length;
-		this._players.push(ws);
+		const id = Math.random();
+		this._players.set(id, ws);
 		this._game.addPlayer(id);
 		ws.on("message", (point) => {
 			if (this._game.started() && this._game.executeStep(id, point)) {
@@ -20,18 +20,19 @@ class GameSession {
 			}
 		});
 		ws.on("close", () => {
-			delete this._players[id];
+			this._players.delete(id);
 			this._game.deletePlayer(id);
 			this._updatePlayersState();
 		});
+		this._updatePlayersState();
 		return true;
 	}
 
 	_updatePlayersState() {
-		for (const player of this._players) {
-			const state = Object.assign({id: this._players.indexOf(player)}, this._game.getState());
-			player.json.send(JSON.stringify(state));
+		for (const [id, player] of this._players) {
+			const state = Object.assign({id}, this._game.getState());
+			player.send(JSON.stringify(state));
 		}
 	}
 }
-module.export = GameSession;
+module.exports = GameSession;

@@ -1,5 +1,5 @@
 const PLAYERS_COUNT = 2;
-const ELEMENTS_COUNT = 25;
+const ELEMENTS_COUNT = 15 * 15;
 const EMPTY_POINT_VALUE = -1; //should be less then 0
 
 class Game {
@@ -8,6 +8,7 @@ class Game {
 		this._currentPlayerIndex = 0;
 		this._players = [];
 		this._field = [];
+		this._cleanField();
 	}
 
 	getState() {
@@ -39,6 +40,7 @@ class Game {
 		if (this._currentPlayerIndex === index && this._field[point] === EMPTY_POINT_VALUE)
 		{
 			this._field[point] = index;
+			this._currentPlayerIndex = (this._currentPlayerIndex + 1) % this._players.length;
 			return true
 		}
 		return false;
@@ -51,4 +53,4 @@ class Game {
 	}
 }
 
-module.export = Game;
+module.exports = Game;

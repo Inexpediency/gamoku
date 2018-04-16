@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+.state-field {
+    margin-top: 20px;
+    text-align: center;
+    font: normal 24px "Segoe UI";
+}
+
+.game-field {
+    width: 45%;
+    margin: 20px auto 0;
+    outline: solid 2px #343434;
+}
+
+.cell {
+    float: left;
+    border: solid 1px #343434;
+}
+
+.cell[data-state="cross"] {
+    background: url("../img/cross.png") no-repeat;
+    background-size: contain;
+}
+
+.cell[data-state="zero"] {
+    background: url("../img/zero.png") no-repeat;
+    background-size: contain;
+}
