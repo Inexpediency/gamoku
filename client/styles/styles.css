@@ -15,9 +15,8 @@
 }
 
 .game-field {
-    width: 45%;
+    width: calc(45% + 1px);
     margin: 20px auto 0;
-    outline: solid 2px #343434;
 }
 
 .cell {
@@ -33,4 +32,20 @@
 .cell[data-state="zero"] {
     background: url("../img/zero.png") no-repeat;
     background-size: contain;
+}
+
+.cell[data-border-right="true"] {
+    border-right: solid 2px #343434;
+}
+
+.cell[data-border-left="true"] {
+    border-left: solid 2px #343434;
+}
+
+.cell[data-border-top="true"] {
+    border-top: solid 2px #343434;
+}
+
+.cell[data-border-bottom="true"] {
+    border-bottom: solid 2px #343434;
 }
