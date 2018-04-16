@@ -22,7 +22,6 @@ window.addEventListener("load", () => {
 	});
 	const fieldElement = getGameField();
 	window.addEventListener("resize", () => {
-		console.log("resize", cellsCount);
 		invalidateCellsSize(cellsCount);
 	});
 });
